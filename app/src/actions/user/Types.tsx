@@ -1,0 +1,8 @@
+export const GET_USER_ATTEMPT = 'GET_USER_ATTEMPT';
+export type GET_USER_ATTEMPT = typeof GET_USER_ATTEMPT;
+
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export type GET_USER_SUCCESS = typeof GET_USER_SUCCESS;
+
+export const GET_USER_FAILURE = 'GET_USER_FAILURE';
+export type GET_USER_FAILURE = typeof GET_USER_FAILURE;
