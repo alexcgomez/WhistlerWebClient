@@ -1,3 +1,5 @@
+import { UserResource } from './resource/UserResource';
+
 class ApiClientSingleton {
   private static _instance: ApiClientSingleton;
 

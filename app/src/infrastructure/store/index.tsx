@@ -1,5 +1,5 @@
 import { applyMiddleware, compose, createStore, Store } from 'redux';
-import { RootState } from '../../reducers/RootReducer';
+import { rootReducer, RootState } from '../../reducers/RootReducer';
 import thunk from 'redux-thunk';
 
 /* tslint:disable no-any */
@@ -14,7 +14,7 @@ const recoverState = (): RootState => ({} as RootState);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store: Store<RootState> = createStore(
-  RootReducer,
+  rootReducer,
   recoverState(),
   composeEnhancers(applyMiddleware(thunk)),
 );

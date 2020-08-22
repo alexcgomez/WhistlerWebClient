@@ -3,6 +3,8 @@ import { Action, ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../../reducers/RootReducer';
 import User from '../../entities/User';
+import ApiClient from '../../services/ApiClient';
+import { AxiosResponse } from 'axios';
 
 export interface GetUserAttempt extends Action {
   type: Types.GET_USER_ATTEMPT;
@@ -37,9 +39,16 @@ export const getUserFailure: ActionCreator<GetUserFailure> = () => ({
 
 export const getUser: ActionCreator<GetUserThunk> = (userId: string): GetUserThunk => {
 
-  return (dispatch: Dispatch<RootState>): Promise<GetUserAction> => {
+  return (dispatch: Dispatch): Promise<GetUserAction> => {
     dispatch(getUserAttempt());
-    return axios.
+
+    return ApiClient.user.get(userId)
+      .then((response: AxiosResponse<User>): GetUserSuccess => {
+
+        return dispatch(getUserSuccess(response.data));
+      }).catch((): GetUserFailure => {
+        return dispatch(getUserFailure());
+      });
 
   };
 };
