@@ -14,7 +14,6 @@ interface GetUserFail {
 
 interface GetUserSuccess {
   type: typeof GET_USER_SUCCESS,
-  // TODO: Create User Class
   payload: User
 }
 
