@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import userReducer from './UserReducer';
+import userReducer, { GetUserState } from './UserReducer';
 
-const RootReducer = combineReducers({
-  user: userReducer
+export interface RootState {
+  getUser: GetUserState;
+}
+
+export const RootReducer = combineReducers({
+  getUser: userReducer
 })
-
-export default RootReducer;

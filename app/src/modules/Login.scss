@@ -1,0 +1,23 @@
+.loginForm{
+  display: flex;
+  background:  steelblue;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px black;
+  flex-direction: column;
+  padding: 10px;
+  p{
+    font-size: larger;
+    font-weight: bolder;
+  }
+  label{
+    font-size: 15px;
+    text-align: left;
+    margin: 0 1rem;
+  }
+  input{
+    margin: 0.2rem 1rem;
+  }
+  button{
+    margin: 1rem;
+  }
+}

@@ -1,18 +1,18 @@
 import { GET_USER_ATTEMPT, GET_USER_FAILURE, GET_USER_SUCCESS } from '../actions/UserActionTypes';
 import User from '../entities/User';
 
-interface DefaultStateI {
+export interface GetUserState {
   loading: boolean,
   user?: User,
   error: boolean
 }
 
-const defaultState: DefaultStateI = {
+const defaultState: GetUserState = {
   loading: false,
   error: false,
 };
 
-const userReducer = (state: DefaultStateI = defaultState, action: any): DefaultStateI => {
+const userReducer = (state: GetUserState = defaultState, action: any): GetUserState => {
   switch (action.type) {
     case GET_USER_ATTEMPT:
       return { ...state, loading: true };
