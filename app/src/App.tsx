@@ -1,8 +1,8 @@
 import React from 'react';
-
 import './App.scss'
+import Login from './modules/Login/Login';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { LoginComponent } from './modules/LoginComponent';
+import Register from './modules/Register/Register';
 
 
 function App() {
@@ -10,7 +10,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path='/' exact component={LoginComponent}/>
+          <Route path='/' exact component={Login}/>
+          <Route path='/register' exact component={Register}/>
         </Switch>
       </BrowserRouter>
     </div>
