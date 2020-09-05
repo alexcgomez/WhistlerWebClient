@@ -2,6 +2,7 @@ import React from 'react';
 import './Login.scss'
 import { Link } from 'react-router-dom';
 function Login() {
+
   return (
     <div className='login-container'>
       <img src={'logo.png'} alt={'Whistler-logo'}/>

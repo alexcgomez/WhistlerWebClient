@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
-import userReducer, { GetUserState } from './UserReducer';
+import getUserReducer, { GetUserState } from './GetUserReducer';
+import createUserReducer, { CreateUserState } from './CreateUserReducer';
 
 export interface RootState {
   getUser: GetUserState;
+  createUser: CreateUserState;
 }
 
 export const RootReducer = combineReducers({
-  getUser: userReducer
+  getUser: getUserReducer,
+  createUser: createUserReducer,
 })

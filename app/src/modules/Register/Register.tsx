@@ -1,38 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Register.scss'
+import './Register.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { CreateUser } from '../../actions/CreateUserActions';
+import { RootState } from '../../reducers/RootReducer';
+
 
 function Register() {
+  const newUser = useSelector((state:RootState)=>state.createUser)
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
+
   return (
     <div className='register-container'>
-    <form>
-      <h3>Register</h3>
+      <img src={'logo.png'} alt={'Whistler-logo'}/>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        const user = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+        }
+        dispatch(CreateUser(user))
+      }}>
+        <h3>Register</h3>
+        {newUser.error? <div className="alert alert-danger" role="alert">
+         This email already exists!
+        </div>: null}
+        <div className="form-group">
+          <label>First name</label>
+          <input type="text" className="form-control" placeholder="First name" required={true}
+                 onChange={(e) => setFirstName(e.target.value)}/>
+        </div>
 
-      <div className="form-group">
-        <label>First name</label>
-        <input type="text" className="form-control" placeholder="First name" />
-      </div>
+        <div className="form-group">
+          <label>Last name</label>
+          <input type="text" className="form-control" placeholder="Last name" required={true}
+                 onChange={(e) => setLastName(e.target.value)}/>
+        </div>
 
-      <div className="form-group">
-        <label>Last name</label>
-        <input type="text" className="form-control" placeholder="Last name" />
-      </div>
+        <div className="form-group">
+          <label>Email address</label>
+          <input type="email" className="form-control" placeholder="Enter email" required={true}
+                 onChange={(e) => setEmail(e.target.value)}/>
+        </div>
 
-      <div className="form-group">
-        <label>Email address</label>
-        <input type="email" className="form-control" placeholder="Enter email" />
-      </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input type="password" className="form-control" placeholder="Enter password" required={true}
+                 onChange={(e) => setPassword(e.target.value)}/>
+        </div>
 
-      <div className="form-group">
-        <label>Password</label>
-        <input type="password" className="form-control" placeholder="Enter password" />
-      </div>
-
-      <button type="submit" className="btn btn-primary btn-block">Register</button>
-      <p className="forgot-password text-right">
-        Already registered? <Link to={'/'}>Sign in</Link>
-      </p>
-    </form>
+        <button type="submit" className="btn btn-primary btn-block">Register
+        </button>
+        <p className="forgot-password text-right">
+          Already registered? <Link to={'/'}>Sign in</Link>
+        </p>
+      </form>
     </div>
   );
 }

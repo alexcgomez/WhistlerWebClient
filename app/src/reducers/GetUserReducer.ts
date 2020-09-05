@@ -1,4 +1,4 @@
-import { GET_USER_ATTEMPT, GET_USER_FAILURE, GET_USER_SUCCESS } from '../actions/UserActionTypes';
+import { GET_USER_ATTEMPT, GET_USER_FAILURE, GET_USER_SUCCESS } from '../actions/GetUserActionTypes';
 import User from '../entities/User';
 
 export interface GetUserState {
@@ -12,10 +12,10 @@ const defaultState: GetUserState = {
   error: false,
 };
 
-const userReducer = (state: GetUserState = defaultState, action: any): GetUserState => {
+const getUserReducer = (state: GetUserState = defaultState, action: any): GetUserState => {
   switch (action.type) {
     case GET_USER_ATTEMPT:
-      return { ...state, loading: true };
+      return { ...state, loading: true ,error:false };
     case GET_USER_FAILURE:
       return { ...state, loading: false, error: true };
     case GET_USER_SUCCESS:
@@ -26,4 +26,4 @@ const userReducer = (state: GetUserState = defaultState, action: any): GetUserSt
 
 };
 
-export default userReducer;
+export default getUserReducer;
