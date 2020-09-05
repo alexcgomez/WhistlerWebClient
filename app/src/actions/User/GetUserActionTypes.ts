@@ -1,4 +1,4 @@
-import User from '../entities/User';
+import User from '../../entities/User';
 
 export const GET_USER_ATTEMPT = 'GET_USER_ATTEMPT';
 export const GET_USER_FAILURE = 'GET_USER_FAILURE';

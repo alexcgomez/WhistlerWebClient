@@ -1,4 +1,4 @@
-import { CREATE_USER_ATTEMPT, CREATE_USER_FAILURE, CREATE_USER_SUCCESS } from '../actions/CreateUserActionTypes';
+import { CREATE_USER_ATTEMPT, CREATE_USER_FAILURE, CREATE_USER_SUCCESS } from '../../actions/User/CreateUserActionTypes';
 
 export interface CreateUserState {
   loading: boolean,

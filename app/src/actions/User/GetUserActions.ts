@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { GET_USER_ATTEMPT, GET_USER_FAILURE, GET_USER_SUCCESS, UserDispatchTypes } from './GetUserActionTypes';
 import axios from 'axios';
-import User from '../entities/User';
+import User from '../../entities/User';
 
 export const GetUser = (userId: string) => async (dispatch: Dispatch<UserDispatchTypes>) => {
   try {

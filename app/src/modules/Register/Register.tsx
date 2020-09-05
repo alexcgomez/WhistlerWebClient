@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { CreateUser } from '../../actions/CreateUserActions';
+import { CreateUser } from '../../actions/User/CreateUserActions';
 import { RootState } from '../../reducers/RootReducer';
 
 

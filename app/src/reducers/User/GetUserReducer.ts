@@ -1,5 +1,5 @@
-import { GET_USER_ATTEMPT, GET_USER_FAILURE, GET_USER_SUCCESS } from '../actions/GetUserActionTypes';
-import User from '../entities/User';
+import { GET_USER_ATTEMPT, GET_USER_FAILURE, GET_USER_SUCCESS } from '../../actions/User/GetUserActionTypes';
+import User from '../../entities/User';
 
 export interface GetUserState {
   loading: boolean,
