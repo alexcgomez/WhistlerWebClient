@@ -20,7 +20,7 @@ const defaultState: AuthenticationState = {
   loggedUser: null,
 };
 
-const authReducer = (state: AuthenticationState = defaultState, action: any): AuthenticationState => {
+const authReducer = (state: AuthenticationState = defaultState, action: any) => {
   switch (action.type) {
     case LOGOUT:
       return defaultState;
