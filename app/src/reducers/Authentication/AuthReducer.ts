@@ -8,36 +8,35 @@ import {
 
 export interface AuthenticationState {
   loading: boolean,
-  token?: Token | null,
+  token?: string,
   error: boolean,
-  loggedUser: User | null,
+  //loggedUser: User | null,
 }
 
 const defaultState: AuthenticationState = {
   loading: false,
-  token: null,
   error: false,
-  loggedUser: null,
 };
 
-const authReducer = (state: AuthenticationState = defaultState, action: any) => {
+const authReducer = (state: AuthenticationState = defaultState, action: any): AuthenticationState=> {
   switch (action.type) {
-    case LOGOUT:
-      return defaultState;
     case AUTHENTICATION_ATTEMPT:
       return { ...state, loading: true, error: false };
     case AUTHENTICATION_SUCCESS:
       const token: Token = action.payload.token;
-      const user: User = new User(action.payload.user)
+     // const user: User = new User(action.payload.user)
       return {
         ...state,
-        token: token,
         loading: false,
+        token: '',
         error: false,
-        loggedUser: user,
+        //loggedUser: user,
       };
     case AUTHENTICATION_FAILURE:
       return { ...state, loading: false, error: true };
+
+    default:
+      return state;
   }
 
 };
