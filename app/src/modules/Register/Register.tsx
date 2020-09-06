@@ -4,6 +4,8 @@ import './Register.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { CreateUser } from '../../actions/User/CreateUserActions';
 import { RootState } from '../../reducers/RootReducer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 function Register() {
@@ -16,21 +18,25 @@ function Register() {
 
   const dispatch = useDispatch();
 
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+    }
+    dispatch(CreateUser(user))
+  }
+
   return (
     <div className='register-container'>
       <img src={'logo.png'} alt={'Whistler-logo'}/>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        const user = {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password,
-        }
-        dispatch(CreateUser(user))
-      }}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <h3>Register</h3>
         {newUser.error? <div className="alert alert-danger" role="alert">
+          <FontAwesomeIcon icon={faExclamationCircle} />
+          <span>     </span>
          This email already exists!
         </div>: null}
         <div className="form-group">

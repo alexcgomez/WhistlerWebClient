@@ -3,12 +3,12 @@ import { GET_USER_ATTEMPT, GET_USER_FAILURE, GET_USER_SUCCESS, UserDispatchTypes
 import axios from 'axios';
 import User from '../../entities/User';
 
-export const GetUser = (userId: string) => async (dispatch: Dispatch<UserDispatchTypes>) => {
+export const GetUser = (email: string) => async (dispatch: Dispatch<UserDispatchTypes>) => {
   try {
     dispatch({
       type: GET_USER_ATTEMPT,
     });
-    const res = await axios.get(process.env.BASE_API_ROUTE+'/v1/users/' + userId);
+    const res = await axios.get(process.env.BASE_API_ROUTE+ 'v1/users/' + email);
     dispatch({
       type: GET_USER_SUCCESS,
       payload: new User(res.data),
