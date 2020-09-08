@@ -12,7 +12,7 @@ export const CreateUser = (user: any) => async (dispatch: Dispatch<UserDispatchT
     dispatch({
       type: CREATE_USER_ATTEMPT,
     });
-    const newUserId = await axios.post(process.env.BASE_API_ROUTE + 'v1/users/create', user);
+    const newUserId = await axios.post('http://localhost:8080/v1/users/create', user);
     dispatch({
       type: CREATE_USER_SUCCESS,
       payload: newUserId.data,
