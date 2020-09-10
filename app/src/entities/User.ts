@@ -4,6 +4,7 @@ export default class User {
   lastName: string;
   email: string;
   active: boolean;
+  password: string;
 
   constructor(entity: User) {
     this.id = entity.id;
@@ -11,5 +12,6 @@ export default class User {
     this.lastName = entity.lastName;
     this.email = entity.email;
     this.active = entity.active;
+    this.password = entity.password;
   }
 }

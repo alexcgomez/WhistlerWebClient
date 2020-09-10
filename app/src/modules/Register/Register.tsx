@@ -37,7 +37,7 @@ function Register() {
         {newUser.error? <div className="alert alert-danger" role="alert">
           <FontAwesomeIcon icon={faExclamationCircle} />
           <span>     </span>
-         This email already exists!
+         Error registering new user: {newUser.error}
         </div>: null}
         <div className="form-group">
           <label>First name</label>

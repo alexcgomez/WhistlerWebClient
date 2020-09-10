@@ -20,7 +20,7 @@ const createUserReducer = (state: CreateUserState = defaultState, action: any): 
     case CREATE_USER_ATTEMPT:
       return { ...state, loading: true, error: false };
     case CREATE_USER_FAILURE:
-      return { ...state, loading: false, error: true };
+      return { ...state, loading: false, error: action.payload };
     case CREATE_USER_SUCCESS:
       return { ...state, loading: false, error: false, newUserId: action.payload };
     default:
