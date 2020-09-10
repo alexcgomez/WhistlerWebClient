@@ -31,14 +31,8 @@ function Register() {
 
   return (
     <div className='register-container'>
-      <img src={'logo.png'} alt={'Whistler-logo'}/>
+      <img src="logo.svg" alt={"Whistler-logo"} />
       <form onSubmit={(e) => handleSubmit(e)}>
-        <h3>Register</h3>
-        {newUser.error? <div className="alert alert-danger" role="alert">
-          <FontAwesomeIcon icon={faExclamationCircle} />
-          <span>     </span>
-         This email already exists!
-        </div>: null}
         <div className="form-group">
           <label>First name</label>
           <input type="text" className="form-control" placeholder="First name" required={true}
@@ -63,11 +57,21 @@ function Register() {
                  onChange={(e) => setPassword(e.target.value)}/>
         </div>
 
-        <button type="submit" className="btn btn-primary btn-block">Register
-        </button>
-        <p className="forgot-password text-right">
-          Already registered? <Link to={'/'}>Sign in</Link>
-        </p>
+        {newUser.error? <div className="alert alert-danger" role="alert">
+          <FontAwesomeIcon icon={faExclamationCircle} />
+          <span>     </span>
+         This email already exists!
+        </div>: null}
+
+        <div className="register-buttons">
+          <button type="submit" className="btn btn-sm btn-block">Register
+          </button>
+
+          <p className="forgot-password text-right">
+            Already registered? <Link to={'/'}>Sign in</Link>
+          </p>
+        </div>
+
       </form>
     </div>
   );

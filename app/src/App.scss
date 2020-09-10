@@ -1,25 +1,109 @@
+/* import only the necessary Bootstrap files */
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+/* -------begin customization-------- */
+$theme-colors: (
+  "primary": hsla(61, 78%, 49%, 0.7),
+  "secondary": hsl(61, 78%, 46%),
+  "success": hsla(184, 78%, 40%, 0.3),
+  "info": hsla(184, 78%, 40%, 0.3),
+  //"warning":    ..,
+  //"danger":     ..,
+  "light": hsl(61, 78%, 46%),
+  "dark": hsl(61, 78%, 25%),
+);
+
+// Forms input background, label, height...
+$input-bg:       hsla(184, 50%, 54%, 0.3);
+$input-focus-bg: hsla(184, 50%, 54%, 0.3);
+$label-margin-bottom: 3px;
+$input-height: 22px;
+
+// Buttons settings
+$btn-border-radius: 10px;
+$btn-border-radius-lg: 10px;
+$btn-border-radius-sm: 10px;
+$btn-font-size-sm: small;
+$btn-line-height-sm: 20px;
+
+//$input-focus-border-color: hsla(61, 78%, 49%, 0.7);
+
+//$btn-transition: color .15s ease-in-out, #73740e .15s ease-in-out, black .15s ease-in-out, box-shadow .15s ease-in-out;
+//$input-btn-focus-color: hsla(61, 78%, 49%, 0.7);
+
+/*
+$enable-rounded: true;
+$enable-shadows: true;
+$enable-gradients: false;
+$enable-grid-classes: true;
+$enable-print-styles: true;
+*/
+/* -------end customization-------- */
+
+/* finally, import Bootstrap to set the changes! */
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+/* add @mixin or @extend customizations here */
+/* create new custom classes from existing classes */
+/*
+.row-dark {
+  @extend .row;
+  background-color: #333333;
+  color: #ffffff;
+}
+//use @mixins
+.btn-custom {
+@include button-variant(red, white, red, red);
+}
+*/
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: "Roboto", "Open Sans", "Segoe UI", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif,
+    -apple-system, BlinkMacSystemFont;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 .App {
-  background-color: #282c34;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: white;
+  color: #73740e;
 }
+
+// Buttons styles
+.btn-sm {
+  background-color: hsla(61, 78%, 52%, 0.8);
+  border-color: #73740e;
+  font-size: 0.75rem;
+}
+.btn-sm:hover {
+  color: #000000;
+  background-color: hsla(61, 78%, 45%, 0.7);
+  border-color: #73740e;
+}
+.alert {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0px 7px;
+}
+.forgot-password{
+  font-size: 0.75rem;
+}
+
+// Forms
+.form-control {
+  font-size: 0.75rem;
+}
+
+//TODO: Focus button color transition
