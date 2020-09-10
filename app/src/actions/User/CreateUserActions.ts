@@ -12,12 +12,14 @@ export const CreateUser = (user:any) => async (dispatch: Dispatch<UserDispatchTy
     dispatch({
       type: CREATE_USER_ATTEMPT,
     });
-    const res = await axios.get('http://localhost:8080/login/', {data:{
+    const res = await axios.post('http://localhost:8080/login/', {
 
       email:user.email,
       password:user.password,
+      firstName: user.firstName,
+      lastName: user.lastName
 
-      }});
+      });
     dispatch({
       type: CREATE_USER_SUCCESS,
       payload: res.data,
