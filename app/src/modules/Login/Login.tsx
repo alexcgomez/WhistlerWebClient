@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import './Login.scss';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { Authenticate } from '../../actions/Auth/AuthActions';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../reducers/RootReducer';
+import { useDispatch } from 'react-redux';
 
 function Login() {
-
-  const authenticated = useSelector((state: RootState) => state.authentication);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,18 +14,11 @@ function Login() {
 
   const dispatch = useDispatch();
 
-  const history = useHistory();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitted(true);
     dispatch(Authenticate(email, password));
-    while(authenticated.loading){
-      console.log('a')
-    }
-    if (authenticated.authenticated) {
-      history.push('/asd');
-    }
   }
 
   return (

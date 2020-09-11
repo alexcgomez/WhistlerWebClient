@@ -12,9 +12,11 @@ export const Authenticate = (email: string, password: string) => async (dispatch
     dispatch({
       type: AUTHENTICATION_ATTEMPT,
     });
-    const res = await axios.post('http://localhost:8080/v1/login', {
-      email: email,
-      password: password,
+    const res = await axios.get('http://localhost:8080/auth', {
+      params: {
+        email: email,
+        password: password,
+      },
     });
     dispatch({
       type: AUTHENTICATION_SUCCESS,

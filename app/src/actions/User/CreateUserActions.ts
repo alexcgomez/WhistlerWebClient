@@ -12,12 +12,13 @@ export const CreateUser = (user:any) => async (dispatch: Dispatch<UserDispatchTy
     dispatch({
       type: CREATE_USER_ATTEMPT,
     });
-    const res = await axios.post('http://localhost:8080/login/', {
+    const res = await axios.post('http://localhost:8080/auth', {
 
       email:user.email,
       password:user.password,
       firstName: user.firstName,
-      lastName: user.lastName
+      last    const user = await getRepository(User).findOne({id:req.params.id});
+      res.send(user.firstName + ' ' + user.lastName);Name: user.lastName
 
       });
     dispatch({
