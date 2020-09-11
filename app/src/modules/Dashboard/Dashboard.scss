@@ -1,4 +1,10 @@
 .dash-container {
-
+  max-width: 960px;
+  img {
+    margin: 10px 20px;
+    max-width: 150px;
+  }
+  .dash-body {
+    background-color: hsla(0, 0%, 100%, 1);
+  }
 }
-

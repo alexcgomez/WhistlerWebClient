@@ -5,9 +5,11 @@
 /* -------begin customization-------- */
 $theme-colors: (
   "primary": hsla(61, 78%, 49%, 0.7),
-  "secondary": hsl(61, 78%, 46%),
-  "success": hsla(184, 78%, 40%, 0.3),
-  "info": hsla(184, 78%, 40%, 0.3),
+  //"secondary": hsl(61, 78%, 46%),
+  "secondary": hsl(184, 56%, 43%),
+  //"success": hsla(184, 78%, 40%, 1),
+  "success": hsl(184, 56%, 43%),
+  "info": rgba(22, 171, 182, 1),
   //"warning":    ..,
   //"danger":     ..,
   "light": hsl(61, 78%, 46%),
@@ -28,7 +30,6 @@ $btn-font-size-sm: small;
 $btn-line-height-sm: 20px;
 
 //$input-focus-border-color: hsla(61, 78%, 49%, 0.7);
-
 //$btn-transition: color .15s ease-in-out, #73740e .15s ease-in-out, black .15s ease-in-out, box-shadow .15s ease-in-out;
 //$input-btn-focus-color: hsla(61, 78%, 49%, 0.7);
 
@@ -58,6 +59,7 @@ $enable-print-styles: true;
 }
 */
 
+
 body {
   margin: 0;
   font-family: "Roboto", "Open Sans", "Segoe UI", "Oxygen", "Ubuntu",
@@ -73,29 +75,38 @@ code {
 }
 
 .App {
-  background-color: #ffffff;
+  background-color: hsla(60, 43%, 90%, 0.7);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #73740e;
+  //color: #73740e;
 }
 
 // Buttons styles
+$my-button-bg:hsla(61, 78%, 52%, 0.8);
 .btn-sm {
-  background-color: hsla(61, 78%, 52%, 0.8);
-  border-color: #73740e;
-  font-size: 0.75rem;
+    @include button-variant($my-button-bg, darken($my-button-bg, 7.5%), darken($my-button-bg, 10%), lighten($my-button-bg,5%), lighten($my-button-bg, 10%), darken($my-button-bg,30%));
+}
+
+.btn-sm-primary {
+    @include button-outline-variant($my-button-bg, #222222, lighten($my-button-bg,5%), $my-button-bg);
+}
+
+.btn-sm {
+  //background-color: hsla(61, 78%, 52%, 0.8);
+  //border-color: #73740e;
+  //font-size: 0.75rem;
 }
 .btn-sm:hover {
-  color: #000000;
-  background-color: hsla(61, 78%, 45%, 0.7);
-  border-color: #73740e;
+  //color: #000000;
+  //background-color: hsla(61, 78%, 45%, 0.7);
+  //border-color: #73740e;
 }
 .alert {
   display: inline-block;
   font-size: 0.75rem;
-  padding: 0px 7px;
+  padding: 0px 8px;
 }
 .forgot-password{
   font-size: 0.75rem;
