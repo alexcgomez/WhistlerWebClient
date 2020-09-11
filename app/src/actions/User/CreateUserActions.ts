@@ -17,8 +17,7 @@ export const CreateUser = (user:any) => async (dispatch: Dispatch<UserDispatchTy
       email:user.email,
       password:user.password,
       firstName: user.firstName,
-      last    const user = await getRepository(User).findOne({id:req.params.id});
-      res.send(user.firstName + ' ' + user.lastName);Name: user.lastName
+      lastName: user.lastName
 
       });
     dispatch({
