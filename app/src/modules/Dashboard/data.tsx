@@ -1,55 +1,51 @@
 export default [
   {
-    name: "Site1",
-    url: "mysite1.url.com",
+    name: 'Site1',
+    url: 'mysite1.url.com',
     whistlerApi: {
       // Data coming from Whistler API
-      cms: "WordPress",
-      version: "3.0.11",
-      latestRelease: "3.2.3", // ---> It could be retrieved from LatestReleases Table
+      cms: 'WordPress',
+      version: '3.0.11',
+      latestRelease: '3.2.3', // ---> It could be retrieved from LatestReleases Table
       scannedAt: { Date },
-      snapshotUrl:
-        "https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg",
+      snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
     },
-    status: "Pending Update", // (latestAvail > version)
-    severity: "LOW", // To check if it's a security upgrade
+    status: 'Pending Update', // (latestAvail > version)
+    severity: 'LOW', // To check if it's a security upgrade
     upgradedAt: { Date }, // ---> Identified from backend as soon as new CMS version is detected.
   },
   {
-    name: "Site2",
-    url: "mysite2.url.com",
+    name: 'Site2',
+    url: 'mysite2.url.com',
     whistlerApi: {
-      cms: "Drupal",
-      version: "7.58",
-      latestRelease: "7.71",
+      cms: 'Drupal',
+      version: '7.58',
+      latestRelease: '7.71',
       scannedAt: { Date },
-      snapshotUrl:
-        "https://i.pinimg.com/originals/4c/c7/79/4cc779016cde5fa190a3b853f10aa933.png",
+      snapshotUrl: 'https://i.pinimg.com/originals/4c/c7/79/4cc779016cde5fa190a3b853f10aa933.png',
     },
-    status: "Pending Update",
-    severity: "HIGH",
+    status: 'Pending Update',
+    severity: 'HIGH',
     upgradedAt: { Date },
   },
   {
-    name: "Site3",
-    url: "mysite3.url.com",
+    name: 'Site3',
+    url: 'mysite3.url.com',
     whistlerApi: {
-      cms: "WordPress",
-      version: "3.2.3",
-      latestRelease: "3.2.3",
+      cms: 'WordPress',
+      version: '3.2.3',
+      latestRelease: '3.2.3',
       scannedAt: { Date },
-      snapshotUrl:
-        "https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg",
+      snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
     },
-    status: "Up to date", // (latestAvail = version)
-    severity: "LOW", // To check if it's a security upgrade
+    status: 'Up to date', // (latestAvail = version)
+    severity: 'LOW', // To check if it's a security upgrade
     upgradedAt: { Date }, // ---> Identified from backend as soon as new CMS version is detected.
   },
 ];
 
 // Scan frequency to be done every day at night, no need to customize
 // then we could provide a button to force a new scanning on demand
-
 
 // ----- Table Sites -----
 //    name: SITE_NAME

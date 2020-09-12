@@ -1,119 +1,108 @@
 /* import only the necessary Bootstrap files */
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
+
+// Required
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+// Optional
+@import '../node_modules/bootstrap/scss/reboot';
+@import '../node_modules/bootstrap/scss/type';
+@import '../node_modules/bootstrap/scss/images';
+@import '../node_modules/bootstrap/scss/code';
+@import '../node_modules/bootstrap/scss/grid';
 
 /* -------begin customization-------- */
+
+// Your variable overrides
+$body-bg: hsla(60, 43%, 90%, 0.7);
+$body-color: #73740e;
+
 $theme-colors: (
-  "primary": hsla(61, 78%, 49%, 0.7),
+  'primary': hsla(61, 78%, 49%, 0.7),
   //"secondary": hsl(61, 78%, 46%),
-  "secondary": hsl(184, 56%, 43%),
+  'secondary': hsl(184, 56%, 43%),
   //"success": hsla(184, 78%, 40%, 1),
-  "success": hsl(184, 56%, 43%),
-  "info": rgba(22, 171, 182, 1),
+  'success': hsl(184, 56%, 43%),
+  'info': rgba(22, 171, 182, 1),
   //"warning":    ..,
   //"danger":     ..,
-  "light": hsl(61, 78%, 46%),
-  "dark": hsl(61, 78%, 25%),
+  'light': hsl(61, 78%, 46%),
+  'dark': black,
 );
 
 // Forms input background, label, height...
-$input-bg:       hsla(184, 50%, 54%, 0.3);
+$input-bg: hsla(184, 50%, 54%, 0.3);
 $input-focus-bg: hsla(184, 50%, 54%, 0.3);
 $label-margin-bottom: 3px;
-$input-height: 22px;
+$input-height-sm: 22px;
 
 // Buttons settings
 $btn-border-radius: 10px;
-$btn-border-radius-lg: 10px;
-$btn-border-radius-sm: 10px;
 $btn-font-size-sm: small;
 $btn-line-height-sm: 20px;
 
-//$input-focus-border-color: hsla(61, 78%, 49%, 0.7);
-//$btn-transition: color .15s ease-in-out, #73740e .15s ease-in-out, black .15s ease-in-out, box-shadow .15s ease-in-out;
-//$input-btn-focus-color: hsla(61, 78%, 49%, 0.7);
+// $input-focus-border-color: hsla(61, 78%, 49%, 0.7);
+// $btn-transition: color .15s ease-in-out, #73740e .15s ease-in-out, black .15s ease-in-out, box-shadow .15s ease-in-out;
+// $input-btn-focus-color: hsla(61, 78%, 49%, 0.7);
 
-/*
-$enable-rounded: true;
-$enable-shadows: true;
-$enable-gradients: false;
-$enable-grid-classes: true;
-$enable-print-styles: true;
-*/
+// $enable-rounded: true;
+// $enable-shadows: true;
+// $enable-gradients: false;
+// $enable-grid-classes: true;
+// $enable-print-styles: true;
 /* -------end customization-------- */
 
 /* finally, import Bootstrap to set the changes! */
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import '../node_modules/bootstrap/scss/bootstrap';
 
 /* add @mixin or @extend customizations here */
 /* create new custom classes from existing classes */
-/*
-.row-dark {
-  @extend .row;
-  background-color: #333333;
-  color: #ffffff;
-}
-//use @mixins
-.btn-custom {
-@include button-variant(red, white, red, red);
-}
-*/
-
 
 body {
   margin: 0;
-  font-family: "Roboto", "Open Sans", "Segoe UI", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif,
-    -apple-system, BlinkMacSystemFont;
+  font-family: 'Roboto', 'Open Sans', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, -apple-system, BlinkMacSystemFont;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .App {
-  background-color: hsla(60, 43%, 90%, 0.7);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  //color: #73740e;
 }
 
 // Buttons styles
-$my-button-bg:hsla(61, 78%, 52%, 0.8);
+$my-button-bg: hsla(61, 78%, 52%, 0.8);
 .btn-sm {
-    @include button-variant($my-button-bg, darken($my-button-bg, 7.5%), darken($my-button-bg, 10%), lighten($my-button-bg,5%), lighten($my-button-bg, 10%), darken($my-button-bg,30%));
+  @include button-variant(
+    $my-button-bg,
+    darken($my-button-bg, 7.5%),
+    darken($my-button-bg, 10%),
+    lighten($my-button-bg, 5%),
+    lighten($my-button-bg, 10%),
+    darken($my-button-bg, 30%)
+  );
 }
-
 .btn-sm-primary {
-    @include button-outline-variant($my-button-bg, #222222, lighten($my-button-bg,5%), $my-button-bg);
-}
-
-.btn-sm {
-  //background-color: hsla(61, 78%, 52%, 0.8);
-  //border-color: #73740e;
-  //font-size: 0.75rem;
-}
-.btn-sm:hover {
-  //color: #000000;
-  //background-color: hsla(61, 78%, 45%, 0.7);
-  //border-color: #73740e;
+  @include button-outline-variant($my-button-bg, #222222, lighten($my-button-bg, 5%), $my-button-bg);
 }
 .alert {
   display: inline-block;
   font-size: 0.75rem;
   padding: 0px 8px;
 }
-.forgot-password{
+.forgot-password {
   font-size: 0.75rem;
 }
 
 // Forms
-.form-control {
+.form-control-sm {
   font-size: 0.75rem;
 }
 
