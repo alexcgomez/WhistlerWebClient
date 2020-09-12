@@ -4,15 +4,20 @@ import Logo from '../Logo';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { Authenticate } from '../../actions/Auth/AuthActions';
+import { useDispatch } from 'react-redux';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
+  const dispatch = useDispatch();
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitted(true);
+    dispatch(Authenticate(email, password));
   }
 
   return (

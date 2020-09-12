@@ -7,19 +7,27 @@ import {
 } from './CreateUserActionTypes';
 import axios from 'axios';
 
-export const CreateUser = (user: any) => async (dispatch: Dispatch<UserDispatchTypes>) => {
+export const CreateUser = (user:any) => async (dispatch: Dispatch<UserDispatchTypes>) => {
   try {
     dispatch({
       type: CREATE_USER_ATTEMPT,
     });
-    const newUserId = await axios.post(process.env.BASE_API_ROUTE + 'v1/users/create', user);
+    const res = await axios.post('http://localhost:8080/auth', {
+
+      email:user.email,
+      password:user.password,
+      firstName: user.firstName,
+      lastName: user.lastName
+
+      });
     dispatch({
       type: CREATE_USER_SUCCESS,
-      payload: newUserId.data,
+      payload: res.data,
     });
   } catch (e) {
     dispatch({
       type: CREATE_USER_FAILURE,
+      payload: e.message
     });
   }
 };
