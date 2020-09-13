@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 import { Img } from 'react-image';
 import './Dashboard.scss';
 import Logo from '../Logo';
@@ -10,12 +6,12 @@ import Logo from '../Logo';
 import data from './data';
 
 function Dashboard() {
-  const [name] = useState('');
+/*  const [name] = useState('');
   const [url] = useState('');
   const [whistlerApi] = useState('');
   const [status] = useState('');
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();*/
 
   return (
     <div className="dash-container">
@@ -63,7 +59,7 @@ function NavBar() {
           <a className="nav-link active" href={`/dashboard`}>
             Home <span className="sr-only">(current)</span>
           </a>
-          <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a className="nav-link dropdown-toggle" href={`/dashboard`} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             User
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -124,7 +120,7 @@ function AddSite() {
 
 // TODO: Show loading spinner
 /* <React.Suspense fallback='Loading views...'>
-      loading?         
+      loading?
         <div className="spinner-border text-secondary" role="status">
           <span className="sr-only">Loading...</span>
         </div>
