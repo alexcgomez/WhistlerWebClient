@@ -15,11 +15,13 @@ function Register() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   const dispatch = useDispatch();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setSubmitted(true);
     const user = {
       firstName: firstName,
       lastName: lastName,
@@ -31,7 +33,7 @@ function Register() {
 
   return (
     <div className="register-container">
-      <Logo maxWidth="200px" />
+      <Logo maxWidth="250px" />
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
           <label>First name</label>
@@ -53,11 +55,17 @@ function Register() {
           <input type="password" className="form-control form-control-sm" placeholder="Enter password" required={true} onChange={(e) => setPassword(e.target.value)} />
         </div>
 
-        {newUser.error ? (
-          <div className="alert alert-danger" role="alert">
+        {submitted && password.length < 6 && email.length !== 0 && (
+          <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
             <FontAwesomeIcon icon={faExclamationCircle} />
-            <span> </span>
-            Error registering new user: {newUser.error}
+            <span>The password must be longer (6 characters)</span>
+          </div>
+        )}
+
+        {newUser.error ? (
+          <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
+            <FontAwesomeIcon icon={faExclamationCircle} />
+            <span> Error registering new user! <br />  {newUser.error} </span>
           </div>
         ) : null}
 
@@ -65,14 +73,16 @@ function Register() {
           <button type="submit" className="btn btn-sm btn-block">
             Register
           </button>
-
           <p className="forgot-password text-right">
             Already registered? <Link to={'/'}>Sign in</Link>
           </p>
         </div>
+        
       </form>
     </div>
   );
 }
+
+{/* TODO: Stop form-control validation if onChange is raised after submit */}
 
 export default Register;

@@ -3,9 +3,13 @@
   position: relative;
   text-align: left;
   min-width: 300px;
+  max-width: 300px;
   img {
     margin: 100px auto 20px;
     display: block;
+  }
+  span {
+    padding-left: 6px;
   }
 }
 

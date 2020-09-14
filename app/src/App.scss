@@ -93,9 +93,8 @@ $my-button-bg: hsla(61, 78%, 52%, 0.8);
   @include button-outline-variant($my-button-bg, #222222, lighten($my-button-bg, 5%), $my-button-bg);
 }
 .alert {
-  display: inline-block;
   font-size: 0.75rem;
-  padding: 0px 8px;
+  padding: 0px 10px;
 }
 .forgot-password {
   font-size: 0.75rem;
