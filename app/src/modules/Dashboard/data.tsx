@@ -2,45 +2,74 @@ export default [
   {
     name: 'Site1',
     url: 'mysite1.url.com',
-    whistlerApi: {
-      // Data coming from Whistler API
-      cms: 'WordPress',
-      version: '3.0.11',
-      latestRelease: '3.2.3', // ---> It could be retrieved from LatestReleases Table
-      scannedAt: { Date },
-      snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
-    },
+    cms: 'WordPress',
+    version: '3.0.11',
+    latestRelease: '3.2.3', // ---> It could be retrieved from LatestReleases Table
+    scannedAt: Date.now(),
+    snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
     status: 'Pending Update', // (latestAvail > version)
     severity: 'LOW', // To check if it's a security upgrade
-    upgradedAt: { Date }, // ---> Identified from backend as soon as new CMS version is detected.
+    upgradedAt: Date.now(), // ---> Identified from backend as soon as new CMS version is detected.
   },
   {
-    name: 'Site2',
+    name: 'Site2 (With a Very Long Name to Check the Card Size)',
     url: 'mysite2.url.com',
-    whistlerApi: {
-      cms: 'Drupal',
-      version: '7.58',
-      latestRelease: '7.71',
-      scannedAt: { Date },
-      snapshotUrl: 'https://i.pinimg.com/originals/4c/c7/79/4cc779016cde5fa190a3b853f10aa933.png',
-    },
+    cms: 'Drupal',
+    version: '7.58',
+    latestRelease: '7.71',
+    scannedAt: Date.now(),
+    snapshotUrl: 'https://i.pinimg.com/originals/4c/c7/79/4cc779016cde5fa190a3b853f10aa933.png',
     status: 'Pending Update',
     severity: 'HIGH',
-    upgradedAt: { Date },
+    upgradedAt: Date.now(),
   },
   {
     name: 'Site3',
     url: 'mysite3.url.com',
-    whistlerApi: {
-      cms: 'WordPress',
-      version: '3.2.3',
-      latestRelease: '3.2.3',
-      scannedAt: { Date },
-      snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
-    },
+    cms: 'WordPress',
+    version: '3.2.3',
+    latestRelease: '3.2.3',
+    scannedAt: Date.now(),
+    snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
     status: 'Up to date', // (latestAvail = version)
     severity: 'LOW', // To check if it's a security upgrade
-    upgradedAt: { Date }, // ---> Identified from backend as soon as new CMS version is detected.
+    upgradedAt: Date.now(), // ---> Identified from backend as soon as new CMS version is detected.
+  },
+  {
+    name: 'Site4',
+    url: 'mysite4.url.com',
+    cms: 'WordPress',
+    version: '3.2.3',
+    latestRelease: '3.2.3',
+    scannedAt: Date.now(),
+    snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
+    status: 'Up to date', // (latestAvail = version)
+    severity: 'LOW', // To check if it's a security upgrade
+    upgradedAt: Date.now(), // ---> Identified from backend as soon as new CMS version is detected.
+  },
+  {
+    name: 'Site5',
+    url: 'mysite5.url.com',
+    cms: 'WordPress',
+    version: '3.2.3',
+    latestRelease: '3.2.3',
+    scannedAt: Date.now(),
+    snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
+    status: 'Up to date', // (latestAvail = version)
+    severity: 'LOW', // To check if it's a security upgrade
+    upgradedAt: Date.now(), // ---> Identified from backend as soon as new CMS version is detected.
+  },
+  {
+    name: 'Site6',
+    url: 'mysite6.url.com',
+    cms: 'WordPress',
+    version: '3.2.3',
+    latestRelease: '3.2.3',
+    scannedAt: Date.now(),
+    snapshotUrl: 'https://i.pinimg.com/originals/7f/f6/82/7ff682ca54c549258bddca9ebc9761b4.jpg',
+    status: 'Up to date', // (latestAvail = version)
+    severity: 'LOW', // To check if it's a security upgrade
+    upgradedAt: Date.now(), // ---> Identified from backend as soon as new CMS version is detected.
   },
 ];
 

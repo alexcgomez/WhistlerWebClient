@@ -25,19 +25,22 @@ function Login() {
       <Logo maxWidth="250px" />
 
       <form onSubmit={(e) => handleSubmit(e)}>
-
         <div className="form-group">
           <label>Email</label>
-          <input type="email" className="form-control form-control-sm" aria-describedby="emailHelp"
+          <input
+            type="email"
+            className="form-control form-control-sm"
+            aria-describedby="emailHelp"
             placeholder="name@example.com"
-            onChange={(e) => setEmail(e.target.value)} required />
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
           </small>
 
           <label>Password</label>
-          <input type="password" className="form-control form-control-sm"
-            onChange={(e) => setPassword(e.target.value)} required />
+          <input type="password" className="form-control form-control-sm" onChange={(e) => setPassword(e.target.value)} required />
         </div>
 
         {submitted && !email && (
@@ -62,12 +65,11 @@ function Login() {
             New user? <Link to={'/register'}>Register here</Link>
           </p>
         </div>
-
       </form>
     </div>
   );
 }
 
-{/* TODO: Stop form-control validation if onChange is raised after submit */}
+// TODO: Stop form-control validation if onChange is raised after submit
 
 export default Login;

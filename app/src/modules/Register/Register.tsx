@@ -46,7 +46,7 @@ function Register() {
         </div>
 
         <div className="form-group">
-          <label>Email address</label>
+          <label>Email</label>
           <input type="email" className="form-control form-control-sm" placeholder="Enter email" required={true} onChange={(e) => setEmail(e.target.value)} />
         </div>
 
@@ -83,6 +83,6 @@ function Register() {
   );
 }
 
-{/* TODO: Stop form-control validation if onChange is raised after submit */}
+// TODO: Stop form-control validation if onChange is raised after submit
 
 export default Register;

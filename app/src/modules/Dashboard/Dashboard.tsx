@@ -2,11 +2,13 @@ import React from 'react';
 import { Img } from 'react-image';
 import './Dashboard.scss';
 import Logo from '../Logo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import data from './data';
 
 function Dashboard() {
-/*  const [name] = useState('');
+  /*  const [name] = useState('');
   const [url] = useState('');
   const [whistlerApi] = useState('');
   const [status] = useState('');
@@ -18,17 +20,20 @@ function Dashboard() {
       <NavBar />
 
       <div className="dash-body">
-        <Logo maxWidth="150px" />
-
+        <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <Logo maxWidth="150px" />
+          <h5 style={{ padding: '14px 25px', margin: '0px' }}>Here is your sites' update summary.</h5>
+        </div>
         {/*Sites details*/}
         <ul className="list-unstyled">
           {data.map((site) => (
             <li className="media" key={site.name}>
-              <SiteSnapshot snapshotUrl={site.whistlerApi.snapshotUrl} url={site.url} />
-              <div className="media-body text-dark">
-                <h5 className="mt-0 mb-1">{site.name}</h5>
-                Here site CMS and version detected, status and severity.
+              {/*<SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />*/}
+              <div className="site-info card mb-3 bg-light">
+                <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />
+                <SiteCard site={site} />
               </div>
+              <div className="site-status">{site.status}</div>
             </li>
           ))}
         </ul>
@@ -43,7 +48,7 @@ export default Dashboard;
 
 function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-primary">
       <button
         className="navbar-toggler"
         type="button"
@@ -80,7 +85,7 @@ function NavBar() {
           </a>
         </div>
       </div>
-      <button className="btn btn-success my-2 my-sm-0" type="submit">
+      <button className="btn btn-secondary my-2 my-sm-0" type="submit">
         Scan
       </button>
     </nav>
@@ -89,9 +94,9 @@ function NavBar() {
 
 function SiteSnapshot(props: { snapshotUrl: string; url: string }) {
   return (
-    <div className="site-snapshot">
+    <div className="site-snapshot border border-0 border-white">
       {/* Multiple fallback images: attempt to load all the images specified in the array'*/}
-      <Img src={[props.snapshotUrl, '/image-not-found.png']} alt="" width="128" height="128" />
+      <Img src={[props.snapshotUrl, '/image-not-found.png']} alt="" width="120" height="120" />
       <a className="text-secondary" href={props.url}>
         {props.url}
       </a>
@@ -118,6 +123,38 @@ function AddSite() {
   );
 }
 
+function SiteCard(props: { site: any }) {
+  return (
+    <div className="card-details border-left">
+      <div className="site-header card-header text-dark ">
+        {props.site.name}
+        <button className="btn" type="submit">
+          <FontAwesomeIcon icon={faTrashAlt} size={'lg'} />
+        </button>
+      </div>
+
+      <div className="card-body text-dark">
+        <SiteDetails site={props.site} />
+      </div>
+    </div>
+  );
+}
+
+function SiteDetails(props: { site: any }) {
+  return (
+    <ul className="site-details">
+      <li className="card-text" style={{ fontWeight: 'bold' }}>
+        {props.site.cms}
+      </li>
+      <li className="card-text">Current version: {props.site.version}</li>
+      <li className="card-text">Last release: {props.site.latestRelease}</li>
+      <p className="card-text site-bottom">
+        <small className="text-muted">Scanned at: {props.site.scannedAt}</small>
+      </p>
+    </ul>
+  );
+}
+
 // TODO: Show loading spinner
 /* <React.Suspense fallback='Loading views...'>
       loading?
@@ -126,3 +163,17 @@ function AddSite() {
         </div>
       : null
   </React.Suspense>*/
+
+// TODO: Add condition to show status with icons and colors (red, yellow, green)
+// TODO: Update summary based on React state (Sites).
+// TODO: Find a better place on top for AddSite element, at least add href link to move down
+
+// --- Future work ---
+// Add summary view without snapshots, just a table with all the sites, CMS, versions and status 
+// Add option to search the sites in a given server and add them automatically
+// Add upgrade details and links
+// Add custom settings for default view, scan periodicity...
+// Allow setting custom notifications, for every update, once a week... only major or security upgrades
+
+
+

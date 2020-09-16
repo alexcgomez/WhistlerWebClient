@@ -16,18 +16,18 @@
 
 // Your variable overrides
 $body-bg: hsla(60, 43%, 90%, 0.7);
-$body-color: #73740e;
+$body-color: #5e5f11;
 
 $theme-colors: (
-  'primary': hsla(61, 78%, 49%, 0.7),
+  'primary': hsl(61, 78%, 46%),
   //"secondary": hsl(61, 78%, 46%),
-  'secondary': hsl(184, 56%, 43%),
+  'secondary': rgb(48, 163, 171),
   //"success": hsla(184, 78%, 40%, 1),
-  'success': hsl(184, 56%, 43%),
+  'success': hsla(184, 31%, 73%, 0.6),
   'info': rgba(22, 171, 182, 1),
   //"warning":    ..,
-  //"danger":     ..,
-  'light': hsl(61, 78%, 46%),
+  //"danger":     ..,,
+  'light':white,
   'dark': black,
 );
 
@@ -41,6 +41,11 @@ $input-height-sm: 22px;
 $btn-border-radius: 10px;
 $btn-font-size-sm: small;
 $btn-line-height-sm: 20px;
+
+// Cards settings
+$card-border-radius: 10px;
+$card-cap-bg: rgba(204, 242, 245, 0.3);
+//$card-bg:
 
 // $input-focus-border-color: hsla(61, 78%, 49%, 0.7);
 // $btn-transition: color .15s ease-in-out, #73740e .15s ease-in-out, black .15s ease-in-out, box-shadow .15s ease-in-out;
