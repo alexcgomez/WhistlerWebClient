@@ -4,15 +4,21 @@ import {
   AUTHENTICATION_SUCCESS,
 } from '../../actions/Auth/AuthActionTypes';
 
+export interface AuthResponse{
+  message: string,
+  loggedIn: boolean,
+  accesstoken: string,
+}
+
+
 export interface AuthState {
   loading: boolean,
-  authenticatedData: boolean,
+  authenticatedData?: AuthResponse,
   error: boolean
 }
 
 const initialState: AuthState = {
   loading: false,
-  authenticatedData: false,
   error: false,
 };
 

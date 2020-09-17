@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
 import Login from './modules/Login/Login';
 import Register from './modules/Register/Register';
 import Dashboard from './modules/Dashboard/Dashboard';

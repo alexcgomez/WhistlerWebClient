@@ -6,14 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import data from './data';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers/RootReducer';
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
-
-  const authentication = useSelector((state: RootState) => state.authentication);
-  return (
-    <div className="dash-container">
+  return (    <div className="dash-container">
+      {localStorage.getItem('token') ?
+  <div className="dash-container">
         <NavBar/>
         <div className="dash-body">
         <div style={{ display: 'inline-flex', alignItems: 'center' }}>
@@ -35,7 +33,13 @@ function Dashboard() {
         </ul>
         <AddSite />
         </div>
+  </div>:<div>
+          You need to login to view this content.
+          <br/>
+          <Link to={'/'}><button type="button" className="btn btn-primary">Go to Login</button></Link>
+  </div>}
     </div>
+
   );
 }
 
