@@ -6,39 +6,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import data from './data';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers/RootReducer';
 
 function Dashboard() {
-  /*  const [name] = useState('');
-  const [url] = useState('');
-  const [whistlerApi] = useState('');
-  const [status] = useState('');
 
-  const dispatch = useDispatch();*/
-
+  const authentication = useSelector((state: RootState) => state.authentication);
   return (
     <div className="dash-container">
-      <NavBar />
-
-      <div className="dash-body">
+        <NavBar/>
+        <div className="dash-body">
         <div style={{ display: 'inline-flex', alignItems: 'center' }}>
-          <Logo maxWidth="150px" />
-          <h5 style={{ padding: '14px 25px', margin: '0px' }}>Here is your sites' update summary.</h5>
+        <Logo maxWidth="150px" />
+        <h5 style={{ padding: '14px 25px', margin: '0px' }}>Here is your sites' update summary.</h5>
         </div>
         {/*Sites details*/}
         <ul className="list-unstyled">
-          {data.map((site) => (
-            <li className="media" key={site.name}>
-              {/*<SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />*/}
-              <div className="site-info card mb-3 bg-light">
-                <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />
-                <SiteCard site={site} />
-              </div>
-              <div className="site-status">{site.status}</div>
-            </li>
-          ))}
+        {data.map((site) => (
+          <li className="media" key={site.name}>
+            {/*<SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />*/}
+            <div className="site-info card mb-3 bg-light">
+              <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url}/>
+              <SiteCard site={site}/>
+            </div>
+            <div className="site-status">{site.status}</div>
+          </li>
+        ))}
         </ul>
         <AddSite />
-      </div>
+        </div>
     </div>
   );
 }
@@ -56,14 +52,15 @@ function NavBar() {
         aria-controls="navbarNavAltMarkup"
         aria-expanded="false"
         aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"/>
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <a className="nav-link active" href={`/dashboard`}>
             Home <span className="sr-only">(current)</span>
           </a>
-          <a className="nav-link dropdown-toggle" href={`/dashboard`} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a className="nav-link dropdown-toggle" href={`/dashboard`} id="navbarDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             User
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -73,7 +70,7 @@ function NavBar() {
             <a className="dropdown-item" href={`/dashboard`}>
               Logout
             </a>
-            <div className="dropdown-divider"></div>
+            <div className="dropdown-divider"/>
             <a className="dropdown-item" href={`/dashboard`}>
               Unregister
             </a>
@@ -95,7 +92,7 @@ function SiteSnapshot(props: { snapshotUrl: string; url: string }) {
   return (
     <div className="site-snapshot border border-0 border-white">
       {/* Multiple fallback images: attempt to load all the images specified in the array'*/}
-      <Img src={[props.snapshotUrl, '/image-not-found.png']} alt="" width="120" height="120" />
+      <Img src={[props.snapshotUrl, '/image-not-found.png']} alt="" width="120" height="120"/>
       <a className="text-secondary" href={props.url}>
         {props.url}
       </a>
@@ -128,12 +125,12 @@ function SiteCard(props: { site: any }) {
       <div className="site-header card-header text-dark ">
         {props.site.name}
         <button className="btn" type="submit">
-          <FontAwesomeIcon icon={faTrashAlt} size={'lg'} />
+          <FontAwesomeIcon icon={faTrashAlt} size={'lg'}/>
         </button>
       </div>
 
       <div className="card-body text-dark">
-        <SiteDetails site={props.site} />
+        <SiteDetails site={props.site}/>
       </div>
     </div>
   );

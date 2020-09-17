@@ -6,13 +6,13 @@ import {
 
 export interface AuthState {
   loading: boolean,
-  authenticated: boolean,
+  authenticatedData: boolean,
   error: boolean
 }
 
 const initialState: AuthState = {
   loading: false,
-  authenticated: false,
+  authenticatedData: false,
   error: false,
 };
 
@@ -21,7 +21,7 @@ const authenticateReducer = (state: AuthState = initialState, action: any): Auth
     case AUTHENTICATION_ATTEMPT:
       return { ...state, loading: true, error: false };
     case AUTHENTICATION_SUCCESS:
-      return { ...state, loading: false, authenticated: action.payload, error: false };
+      return { ...state, loading: false, authenticatedData: action.payload, error: false };
     case AUTHENTICATION_FAILED:
       return { ...state, loading: false, error: true };
     default:
