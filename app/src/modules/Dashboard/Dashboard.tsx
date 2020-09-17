@@ -37,7 +37,6 @@ function Dashboard() {
             </li>
           ))}
         </ul>
-
         <AddSite />
       </div>
     </div>
