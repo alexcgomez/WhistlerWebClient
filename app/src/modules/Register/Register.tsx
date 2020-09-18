@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Register.scss';
 import Logo from '../Logo';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 function Register() {
   const newUser = useSelector((state: RootState) => state.createUser);
-  const history = useHistory();
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -30,7 +30,7 @@ function Register() {
     };
     if (submitted && password.length >= 6) {
       dispatch(CreateUser(user));
-      history.replace({ pathname: '/dashboard' })
+
     }
 
   }

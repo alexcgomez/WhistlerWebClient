@@ -9,37 +9,37 @@ import data from './data';
 import { Link } from 'react-router-dom';
 
 function Dashboard() {
-  return (    <div className="dash-container">
-      {localStorage.getItem('token') ?
-  <div className="dash-container">
-        <NavBar/>
-        <div className="dash-body">
-        <div style={{ display: 'inline-flex', alignItems: 'center' }}>
-        <Logo maxWidth="150px" />
-        <h5 style={{ padding: '14px 25px', margin: '0px' }}>Here is your sites' update summary.</h5>
-        </div>
-        {/*Sites details*/}
-        <ul className="list-unstyled">
-        {data.map((site) => (
-          <li className="media" key={site.name}>
-            {/*<SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />*/}
-            <div className="site-info card mb-3 bg-light">
-              <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url}/>
-              <SiteCard site={site}/>
+  return (<div className="dash-container">
+        <div className="dash-container">
+          <NavBar/>
+          <div className="dash-body">
+            <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <Logo maxWidth="150px"/>
+              <h5 style={{ padding: '14px 25px', margin: '0px' }}>Here is your sites' update summary.</h5>
             </div>
-            <div className="site-status">{site.status}</div>
-          </li>
-        ))}
-        </ul>
-        <AddSite />
-        </div>
-  </div>:<div>
+            {/*Sites details*/}
+            <ul className="list-unstyled">
+              {data.map((site) => (
+                <li className="media" key={site.name}>
+                  {/*<SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />*/}
+                  <div className="site-info card mb-3 bg-light">
+                    <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url}/>
+                    <SiteCard site={site}/>
+                  </div>
+                  <div className="site-status">{site.status}</div>
+                </li>
+              ))}
+            </ul>
+            <AddSite/>
+          </div>
+        </div> : <div>
           You need to login to view this content.
           <br/>
-          <Link to={'/'}><button type="button" className="btn btn-primary">Go to Login</button></Link>
-  </div>}
+          <Link to={'/'}>
+            <button type="button" className="btn btn-primary">Go to Login</button>
+          </Link>
+        </div>
     </div>
-
   );
 }
 
@@ -60,7 +60,7 @@ function NavBar() {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <a className="nav-link active" href={`/dashboard`}>
+          <a className="nav-link active" href={`/`}>
             Home <span className="sr-only">(current)</span>
           </a>
           <a className="nav-link dropdown-toggle" href={`/dashboard`} id="navbarDropdown" role="button"
