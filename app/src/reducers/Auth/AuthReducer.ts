@@ -3,11 +3,13 @@ import {
   AUTHENTICATION_FAILED,
   AUTHENTICATION_SUCCESS,
 } from '../../actions/Auth/AuthActionTypes';
+import User from '../../entities/User';
 
 export interface AuthResponse{
   message: string,
   loggedIn: boolean,
   accesstoken: string,
+  user?: User
 }
 
 

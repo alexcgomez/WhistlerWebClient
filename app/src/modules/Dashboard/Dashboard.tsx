@@ -7,8 +7,13 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import data from './data';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../reducers/RootReducer';
 
 function Dashboard() {
+  const user = useSelector((state:RootState) => state.authentication.authenticatedData?.user)
+  const dispatch = useDispatch()
+
   return (<div className="dash-container">
         <div className="dash-container">
           <NavBar/>
