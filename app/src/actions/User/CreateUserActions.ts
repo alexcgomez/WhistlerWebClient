@@ -7,7 +7,7 @@ import {
 } from './CreateUserActionTypes';
 import axios from 'axios';
 
-export const CreateUser = (user:any) => async (dispatch: Dispatch<UserDispatchTypes>) => {
+export const CreateUser = (user:any,history:any) => async (dispatch: Dispatch<UserDispatchTypes>) => {
   try {
     dispatch({
       type: CREATE_USER_ATTEMPT,
@@ -22,6 +22,7 @@ export const CreateUser = (user:any) => async (dispatch: Dispatch<UserDispatchTy
       type: CREATE_USER_SUCCESS,
       payload: res.data,
     });
+    history.push('/dashboard')
   } catch (e) {
     dispatch({
       type: CREATE_USER_FAILURE,
