@@ -49,12 +49,12 @@ function Login() {
         required/>
         </div>
 
-        {submitted && !email && (
-          <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
-            <FontAwesomeIcon icon={faExclamationCircle}/>
-            <span>Please the email is required</span>
-          </div>
-        )}
+          {submitted && !email && (
+            <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
+              <FontAwesomeIcon icon={faExclamationCircle} />
+              <span>Please the email is required</span>
+            </div>
+          )}
 
         <div className="login-buttons">
         {authentication.loading &&
