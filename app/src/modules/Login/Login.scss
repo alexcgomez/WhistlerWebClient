@@ -8,6 +8,10 @@
     max-width: 200px;
     display: block;
   }
+  .loading {
+    display: inline;
+    margin: 10px;
+  }
   span {
     padding-left: 6px;
   }
@@ -26,8 +30,8 @@
 
 .login-buttons {
   text-align: right;
-  button {
-    margin: 10px 0px 5px;
-    min-width: 180px;
-  }
+    button {
+      margin: 10px 0px 5px 10px;
+      min-width: 180px;
+    }
 }

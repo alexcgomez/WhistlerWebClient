@@ -28,7 +28,11 @@ function Register() {
       email: email,
       password: password,
     };
-    dispatch(CreateUser(user));
+    if (submitted && password.length >= 6) {
+      dispatch(CreateUser(user));
+
+    }
+
   }
 
   return (
@@ -52,7 +56,7 @@ function Register() {
 
         <div className="form-group">
           <label>Password</label>
-          <input type="password" className="form-control form-control-sm" placeholder="Enter password" required={true} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" name="password" autoComplete="on" className="form-control form-control-sm" placeholder="Enter password" required={true} onChange={(e) => setPassword(e.target.value)} />
         </div>
 
         {submitted && password.length < 6 && email.length !== 0 && (
@@ -65,7 +69,10 @@ function Register() {
         {newUser.error ? (
           <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
             <FontAwesomeIcon icon={faExclamationCircle} />
-            <span> Error registering new user! <br />  {newUser.error} </span>
+            <span>
+              {' '}
+              Error registering new user! <br /> {newUser.error}{' '}
+            </span>
           </div>
         ) : null}
 
@@ -77,12 +84,12 @@ function Register() {
             Already registered? <Link to={'/'}>Sign in</Link>
           </p>
         </div>
-        
       </form>
     </div>
   );
 }
 
 // TODO: Stop form-control validation if onChange is raised after submit
+// TODO: Add loading spinner
 
 export default Register;
