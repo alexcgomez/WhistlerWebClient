@@ -1,49 +1,47 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Img } from 'react-image';
 import './Dashboard.scss';
 import Logo from '../Logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
-import data from './data';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../reducers/RootReducer';
+import { AddSite } from '../../actions/Sites/AddSiteActions';
 
 function Dashboard() {
-  const user = useSelector((state:RootState) => state.authentication.authenticatedData?.user)
-  const dispatch = useDispatch()
+  const userSites = useSelector((state: RootState) => state.authentication.authenticatedData?.userSites);
+
+  const dispatch = useDispatch();
+
+  function handleSumbit(e: FormEvent, siteUrl:string,userId:string) {
+    e.preventDefault();
+    dispatch(AddSite(siteUrl,userId));
+  }
 
   return (<div className="dash-container">
-        <div className="dash-container">
-          <NavBar/>
-          <div className="dash-body">
-            <div style={{ display: 'inline-flex', alignItems: 'center' }}>
-              <Logo maxWidth="150px"/>
-              <h5 style={{ padding: '14px 25px', margin: '0px' }}>Here is your sites' update summary.</h5>
-            </div>
-            {/*Sites details*/}
-            <ul className="list-unstyled">
-              {data.map((site) => (
-                <li className="media" key={site.name}>
-                  {/*<SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />*/}
-                  <div className="site-info card mb-3 bg-light">
-                    <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url}/>
-                    <SiteCard site={site}/>
-                  </div>
-                  <div className="site-status">{site.status}</div>
-                </li>
-              ))}
-            </ul>
-            <AddSite/>
+      <div className="dash-container">
+        <NavBar/>
+        <div className="dash-body">
+          <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+            <Logo maxWidth="150px"/>
+            <h5 style={{ padding: '14px 25px', margin: '0px' }}>Here is your sites' update summary.</h5>
           </div>
-        </div> : <div>
-          You need to login to view this content.
-          <br/>
-          <Link to={'/'}>
-            <button type="button" className="btn btn-primary">Go to Login</button>
-          </Link>
+          {/*Sites details*/}
+          <ul className="list-unstyled">
+            {userSites.map((site: any) => (
+              <li className="media" key={site.name}>
+                {/*<SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />*/}
+                <div className="site-info card mb-3 bg-light">
+                  <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url}/>
+                  <SiteCard site={site}/>
+                </div>
+                <div className="site-status">{site.status}</div>
+              </li>
+            ))}
+          </ul>
+          <AddSiteButton handleSumbit={handleSumbit}/>
         </div>
+      </div>
     </div>
   );
 }
@@ -109,7 +107,9 @@ function SiteSnapshot(props: { snapshotUrl: string; url: string }) {
   );
 }
 
-function AddSite() {
+function AddSiteButton(props: any) {
+  const user = useSelector((state: RootState) => state.authentication.authenticatedData?.user);
+  const [siteUrl, setSiteUrl] = useState('');
   return (
     <div className="input-group mb-3">
       <input
@@ -118,9 +118,11 @@ function AddSite() {
         placeholder=">>> Add your site here and let Whistler notify you when an update is required!"
         aria-label=">>> Add your site here and let Whistler notify you when an update is required!"
         aria-describedby="button-addon2"
+        onChange={(e) => setSiteUrl(e.target.value)}
       />
       <div className="input-group-append">
-        <button className="btn btn-outline-secondary" type="button" id="button-addon2">
+        <button className="btn btn-outline-secondary" type="button" id="button-addon2"
+                onSubmit={(e) => props.handleSumbit(e, siteUrl, user?.id)}>
           Add
         </button>
       </div>

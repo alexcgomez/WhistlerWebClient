@@ -9,7 +9,8 @@ export interface AuthResponse{
   message: string,
   loggedIn: boolean,
   accesstoken: string,
-  user?: User
+  user?: User,
+  userSites: any,
 }
 
 
