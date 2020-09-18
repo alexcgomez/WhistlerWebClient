@@ -37,44 +37,52 @@ function Register() {
 
   return (
     <div className="register-container">
-      <Logo maxWidth="250px" />
+      <Logo maxWidth="250px"/>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
           <label>First name</label>
-          <input type="text" className="form-control form-control-sm" placeholder="First name" required={true} onChange={(e) => setFirstName(e.target.value)} />
+          <input type="text" className="form-control form-control-sm" placeholder="First name" required={true}
+                 onChange={(e) => setFirstName(e.target.value)}/>
         </div>
 
         <div className="form-group">
           <label>Last name</label>
-          <input type="text" className="form-control form-control-sm" placeholder="Last name" required={true} onChange={(e) => setLastName(e.target.value)} />
+          <input type="text" className="form-control form-control-sm" placeholder="Last name" required={true}
+                 onChange={(e) => setLastName(e.target.value)}/>
         </div>
 
         <div className="form-group">
           <label>Email</label>
-          <input type="email" className="form-control form-control-sm" placeholder="Enter email" required={true} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" className="form-control form-control-sm" placeholder="Enter email" required={true}
+                 onChange={(e) => setEmail(e.target.value)}/>
         </div>
 
         <div className="form-group">
           <label>Password</label>
-          <input type="password" name="password" autoComplete="on" className="form-control form-control-sm" placeholder="Enter password" required={true} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" name="password" autoComplete="on" className="form-control form-control-sm"
+                 placeholder="Enter password" required={true} onChange={(e) => setPassword(e.target.value)}/>
         </div>
 
         {submitted && password.length < 6 && email.length !== 0 && (
           <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
-            <FontAwesomeIcon icon={faExclamationCircle} />
+            <FontAwesomeIcon icon={faExclamationCircle}/>
             <span>The password must be longer (6 characters)</span>
           </div>
         )}
 
         {newUser.error ? (
           <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
-            <FontAwesomeIcon icon={faExclamationCircle} />
+            <FontAwesomeIcon icon={faExclamationCircle}/>
             <span>
               {' '}
-              Error registering new user! <br /> {newUser.error}{' '}
+              Error registering new user! <br/> {newUser.error}{' '}
             </span>
           </div>
         ) : null}
+        {submitted ? (
+          <div className="alert alert-info" role="alert">
+            User registered!
+          </div>) : null}
 
         <div className="register-buttons">
           <button type="submit" className="btn btn-sm btn-block">

@@ -13,7 +13,7 @@ function Dashboard() {
 
   const dispatch = useDispatch();
 
-  function handleSumbit(e: FormEvent, siteUrl:string,userId:string) {
+  const handleSumbit = (e: FormEvent, siteUrl:string,userId:string)=> {
     e.preventDefault();
     dispatch(AddSite(siteUrl,userId));
   }
