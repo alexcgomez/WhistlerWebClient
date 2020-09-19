@@ -122,7 +122,7 @@ function AddSiteButton(props: any) {
       />
       <div className="input-group-append">
         <button className="btn btn-outline-secondary" type="button" id="button-addon2"
-                onSubmit={(e) => props.handleSumbit(e, siteUrl, user?.id)}>
+                onClick={(e) => props.handleSumbit(e, siteUrl, user?.id)}>
           Add
         </button>
       </div>
