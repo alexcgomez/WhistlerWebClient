@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Register.scss';
 import Logo from '../Logo';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +18,7 @@ function Register() {
   const [submitted, setSubmitted] = useState(false);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,8 +30,8 @@ function Register() {
       password: password,
     };
     if (password.length >= 6) {
+      dispatch(CreateUser(user,history));
       setSubmitted(true);
-      dispatch(CreateUser(user));
     }
   }
 
