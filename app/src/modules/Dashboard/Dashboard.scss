@@ -59,8 +59,22 @@
         padding: 12px;
       }
     }
+    .alert{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 350px;
+      margin: 0px 16px;
+      padding: 0px 40px;
+    }
     .input-group {
       padding: 16px;
+      .loading {
+        position: absolute;
+        right: 85px;
+        bottom: 19px;
+      }
     }
   }
 }

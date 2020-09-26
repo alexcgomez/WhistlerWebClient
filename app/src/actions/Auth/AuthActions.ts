@@ -16,8 +16,10 @@ export const userLogin = (email: string, password: string, history: any) => asyn
         email: email,
         password: password,
     });
-    const resSites = await axios.post('http://localhost:8080/v1/sites/getUserSites', {
-      userId: res.data.user.id,
+    const resSites = await axios.get('http://localhost:8080/v1/sites/', {
+      params: {
+        userId: res.data.user.id
+      }
     });
     res.data.userSites = resSites.data;
     dispatch({

@@ -5,41 +5,66 @@ import Logo from '../Logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { RootState } from '../../reducers/RootReducer';
 import { AddSite } from '../../actions/Sites/AddSiteActions';
+import { DeleteSite } from '../../actions/Sites/DeleteSiteActions';
 
 function Dashboard() {
-  const userSites = useSelector((state: RootState) => state.authentication.authenticatedData?.userSites);
+  let userSites = useSelector((state: RootState) => state.authentication.authenticatedData?.userSites);
+  const addSite = useSelector((state: RootState) => state.addSite);
+  const deleteSite = useSelector((state: RootState) => state.deleteSite);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const handleSumbit = (e: FormEvent, siteUrl:string,userId:string)=> {
+  const handleAdd = (e: FormEvent, siteUrl: string, userId: string) => {
     e.preventDefault();
-    dispatch(AddSite(siteUrl,userId));
-  }
+    userSites = dispatch(AddSite(siteUrl, userId, history));
+  };
 
-  return (<div className="dash-container">
+  const handleDelete = (e: FormEvent, siteUrl: string, userId: string) => {
+    e.preventDefault();
+    dispatch(DeleteSite(siteUrl, userId));
+  };
+
+  return (
+    <div className="dash-container">
       <div className="dash-container">
-        <NavBar/>
+        <NavBar />
         <div className="dash-body">
           <div style={{ display: 'inline-flex', alignItems: 'center' }}>
-            <Logo maxWidth="150px"/>
+            <Logo maxWidth="150px" />
             <h5 style={{ padding: '14px 25px', margin: '0px' }}>Here is your sites' update summary.</h5>
           </div>
+
           {/*Sites details*/}
           <ul className="list-unstyled">
             {userSites.map((site: any) => (
               <li className="media" key={site.name}>
                 {/*<SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />*/}
                 <div className="site-info card mb-3 bg-light">
-                  <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url}/>
-                  <SiteCard site={site}/>
+                  <SiteSnapshot snapshotUrl={site.snapshotUrl} url={site.url} />
+                  <SiteCard site={site} handleDelete={handleDelete} loading={deleteSite.loading} />
                 </div>
                 <div className="site-status">{site.status}</div>
               </li>
             ))}
           </ul>
-          <AddSiteButton handleSumbit={handleSumbit}/>
+
+          {/*Error messages*/}
+          {addSite.error ? (
+            <div className="alert alert-danger" role="alert" style={{ textAlign: 'left' }}>
+              {addSite.message}
+            </div>
+          ) : null}
+          {deleteSite.error ? (
+            <div className="alert alert-danger" role="alert" style={{ textAlign: 'left' }}>
+              {deleteSite.error}
+            </div>
+          ) : null}
+
+          <AddSiteButton handleSumbit={handleAdd} loading={addSite.loading} />
         </div>
       </div>
     </div>
@@ -59,15 +84,14 @@ function NavBar() {
         aria-controls="navbarNavAltMarkup"
         aria-expanded="false"
         aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"/>
+        <span className="navbar-toggler-icon" />
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <a className="nav-link active" href={`/`}>
             Home <span className="sr-only">(current)</span>
           </a>
-          <a className="nav-link dropdown-toggle" href={`/dashboard`} id="navbarDropdown" role="button"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a className="nav-link dropdown-toggle" href={`/dashboard`} id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             User
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -77,7 +101,7 @@ function NavBar() {
             <a className="dropdown-item" href={`/dashboard`}>
               Logout
             </a>
-            <div className="dropdown-divider"/>
+            <div className="dropdown-divider" />
             <a className="dropdown-item" href={`/dashboard`}>
               Unregister
             </a>
@@ -99,7 +123,7 @@ function SiteSnapshot(props: { snapshotUrl: string; url: string }) {
   return (
     <div className="site-snapshot border border-0 border-white">
       {/* Multiple fallback images: attempt to load all the images specified in the array'*/}
-      <Img src={[props.snapshotUrl, '/image-not-found.png']} alt="" width="120" height="120"/>
+      <Img src={[props.snapshotUrl, '/image-not-found.png']} alt="" width="120" height="120" />
       <a className="text-secondary" href={props.url}>
         {props.url}
       </a>
@@ -121,8 +145,12 @@ function AddSiteButton(props: any) {
         onChange={(e) => setSiteUrl(e.target.value)}
       />
       <div className="input-group-append">
-        <button className="btn btn-outline-secondary" type="button" id="button-addon2"
-                onClick={(e) => props.handleSumbit(e, siteUrl, user?.id)}>
+        {props.loading ? (
+          <div className="loading spinner-border text-secondary float-right" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        ) : null}
+        <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={(e) => props.handleSumbit(e, siteUrl, user?.id)}>
           Add
         </button>
       </div>
@@ -130,18 +158,24 @@ function AddSiteButton(props: any) {
   );
 }
 
-function SiteCard(props: { site: any }) {
+function SiteCard(props: any, site: any) {
+  const user = useSelector((state: RootState) => state.authentication.authenticatedData?.user);
   return (
     <div className="card-details border-left">
       <div className="site-header card-header text-dark ">
         {props.site.name}
-        <button className="btn" type="submit">
-          <FontAwesomeIcon icon={faTrashAlt} size={'lg'}/>
+        {props.loading ? (
+          <div className="loading spinner-border text-secondary float-right" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        ) : null}
+        <button className="btn" type="submit" onClick={(e) => props.handleDelete(e, props.site.url, user?.id)}>
+          <FontAwesomeIcon icon={faTrashAlt} size={'lg'} />
         </button>
       </div>
 
       <div className="card-body text-dark">
-        <SiteDetails site={props.site}/>
+        <SiteDetails site={props.site} />
       </div>
     </div>
   );
@@ -176,11 +210,8 @@ function SiteDetails(props: { site: any }) {
 // TODO: Find a better place on top for AddSite element, at least add href link to move down
 
 // --- Future work ---
-// Add summary view without snapshots, just a table with all the sites, CMS, versions and status 
+// Add summary view without snapshots, just a table with all the sites, CMS, versions and status
 // Add option to search the sites in a given server and add them automatically
 // Add upgrade details and links
 // Add custom settings for default view, scan periodicity...
 // Allow setting custom notifications, for every update, once a week... only major or security upgrades
-
-
-
