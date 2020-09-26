@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Register.scss';
 import Logo from '../Logo';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,21 +18,21 @@ function Register() {
   const [submitted, setSubmitted] = useState(false);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+
     const user = {
       firstName: firstName,
       lastName: lastName,
       email: email,
       password: password,
     };
-    if (submitted && password.length >= 6) {
-      dispatch(CreateUser(user));
-
+    if (password.length >= 6) {
+      dispatch(CreateUser(user,history));
+      setSubmitted(true);
     }
-
   }
 
   return (
@@ -56,10 +56,18 @@ function Register() {
 
         <div className="form-group">
           <label>Password</label>
-          <input type="password" name="password" autoComplete="on" className="form-control form-control-sm" placeholder="Enter password" required={true} onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="password"
+            name="password"
+            autoComplete="on"
+            className="form-control form-control-sm"
+            placeholder="Enter password"
+            required={true}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
 
-        {submitted && password.length < 6 && email.length !== 0 && (
+        {password.length < 6 && email.length !== 0 && (
           <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
             <FontAwesomeIcon icon={faExclamationCircle} />
             <span>The password must be longer (6 characters)</span>
@@ -73,6 +81,11 @@ function Register() {
               {' '}
               Error registering new user! <br /> {newUser.error}{' '}
             </span>
+          </div>
+        ) : null}
+        {submitted ? (
+          <div className="alert alert-info" role="alert" style={{ textAlign: 'center' }}>
+            User registered!
           </div>
         ) : null}
 
